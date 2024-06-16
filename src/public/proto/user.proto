@@ -1,0 +1,36 @@
+syntax = "proto3";
+
+package UserPackage;
+
+import "public.proto";
+
+message createUser {
+    string firstname = 1;
+    string lastname = 2;
+    int32 age = 3;
+}
+
+message user {
+    int32 id = 1;
+    string firstname = 2;
+    string lastname = 3;
+    int32 age = 4;
+}
+
+message users {
+    repeated user users = 1;
+}
+
+message userId {
+    int32 id = 1;
+}
+
+
+
+service UserService {
+    rpc create (createUser) returns (PublicPackage.response);
+    rpc find (PublicPackage.empty) returns (users);
+    rpc findOne (userId) returns (user);
+    rpc update (user) returns (PublicPackage.response);
+    rpc delete (userId) returns (PublicPackage.response);
+}

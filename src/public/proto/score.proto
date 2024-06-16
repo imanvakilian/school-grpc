@@ -1,0 +1,46 @@
+syntax = "proto3";
+
+package ScorePackage;
+
+import "public.proto";
+
+message createScore {
+    int32 userId = 1;
+    int32 subjectId = 2;
+    double rate = 3;
+}
+
+message user {
+    string firstname = 10;
+    string lastname = 11;
+}
+
+message subject {
+    string title = 12;
+}
+
+message score {
+    double rate = 1;
+    subject subject = 2;
+    user user = 3;
+}
+
+message scores {
+    repeated score scores = 1;
+}
+
+message updateScore {
+    int32 id = 1;
+    double rate = 2;
+}
+
+message scoreId {
+    int32 id = 1;
+}
+
+service ScoreService {
+    rpc create (createScore) returns (PublicPackage.response);
+    rpc find (PublicPackage.empty) returns (scores);
+    rpc update (updateScore) returns (PublicPackage.response);
+    rpc delete (scoreId) returns (PublicPackage.response);
+}

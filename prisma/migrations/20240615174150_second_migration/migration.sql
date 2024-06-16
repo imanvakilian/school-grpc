@@ -1,0 +1,2 @@
+-- AlterTable
+ALTER TABLE "Score" ALTER COLUMN "rate" SET DATA TYPE DECIMAL(65,30);

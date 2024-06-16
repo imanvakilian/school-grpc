@@ -1,0 +1,30 @@
+syntax = "proto3";
+
+package SubjectPackage;
+
+import "public.proto";
+
+message createSubject {
+    string title = 1;
+}
+
+message subject {
+    int32 id = 1;
+    string title = 2;
+}
+
+message subjects {
+    repeated subject subjects = 1;
+}
+
+message subjectId {
+    int32 id = 1;
+}
+
+service SubjectService {
+    rpc create (createSubject) returns (PublicPackage.response);
+    rpc find (PublicPackage.empty) returns (subjects);
+    rpc findOne (subjectId) returns (subject);
+    rpc update (subject) returns (PublicPackage.response);
+    rpc delete (subjectId) returns (PublicPackage.response);
+}
